@@ -1,0 +1,53 @@
+INFO:root:
+Selector: High Level Strategy
+| Sequence: Spread Strategy
+| | Check: if_neutral_planet_available
+| | Action: spread_to_weakest_neutral_planet
+| Sequence: Defensive Strategy
+| | Check: under_attack
+| | Action: defend_against_threats
+| Sequence: Steal Neutral Strategy
+| | Check: can_steal_neutral
+| | Action: steal_neutral_after_enemy
+| Sequence: High Growth Strategy
+| | Check: have_high_growth_targets
+| | Action: attack_high_growth_planet
+| Sequence: Offensive Strategy
+| | Check: have_largest_fleet
+| | Action: attack_weakest_enemy_planet
+| Action: attack_weakest_enemy_planet
+
+DEBUG:root:Executing:Selector: High Level Strategy
+DEBUG:root:Executing:Sequence: Spread Strategy
+DEBUG:root:Executing:Check: if_neutral_planet_available
+DEBUG:root:Result: Check: if_neutral_planet_available -> Success
+DEBUG:root:Executing:Action: spread_to_weakest_neutral_planet
+DEBUG:root:Order:1 11 2.0
+ERROR:root:Error in bot.
+Traceback (most recent call last):
+  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_bot.py", line 94, in <module>
+    do_turn(planet_wars)
+  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_bot.py", line 29, in do_turn
+    behavior_tree.execute(state)
+  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_nodes.py", line 8, in logged_fn
+    result = fn(self, state)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_nodes.py", line 52, in execute
+    success = child_node.execute(state)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_nodes.py", line 8, in logged_fn
+    result = fn(self, state)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_nodes.py", line 63, in execute
+    continue_execution = child_node.execute(state)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_nodes.py", line 8, in logged_fn
+    result = fn(self, state)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_nodes.py", line 89, in execute
+    return self.action_function(state)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\behaviors.py", line 51, in spread_to_weakest_neutral_planet
+    my_strongest.num_ships -= required_ships
+    ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: can't set attribute
