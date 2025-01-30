@@ -1,53 +1,2691 @@
 INFO:root:
-Selector: High Level Strategy
-| Sequence: Spread Strategy
-| | Check: if_neutral_planet_available
-| | Action: spread_to_weakest_neutral_planet
+Selector: High Level Ordering of Strategies
 | Sequence: Defensive Strategy
-| | Check: under_attack
-| | Action: defend_against_threats
-| Sequence: Steal Neutral Strategy
-| | Check: can_steal_neutral
-| | Action: steal_neutral_after_enemy
-| Sequence: High Growth Strategy
-| | Check: have_high_growth_targets
-| | Action: attack_high_growth_planet
+| | Check: is_under_attack
+| | Action: defend_weakest_planet
 | Sequence: Offensive Strategy
 | | Check: have_largest_fleet
-| | Action: attack_weakest_enemy_planet
-| Action: attack_weakest_enemy_planet
+| | Check: have_growth_advantage
+| | Action: attack_weakest_enemy_planet_smart
+| Sequence: Aggressive Spread Strategy
+| | Check: neutral_planet_available_with_ships
+| | Action: spread_to_best_neutral_planet
+| Sequence: Fallback Strategy
+| | Check: enemy_planet_available_with_ships
+| | Action: aggressive_spread
 
-DEBUG:root:Executing:Selector: High Level Strategy
-DEBUG:root:Executing:Sequence: Spread Strategy
-DEBUG:root:Executing:Check: if_neutral_planet_available
-DEBUG:root:Result: Check: if_neutral_planet_available -> Success
-DEBUG:root:Executing:Action: spread_to_weakest_neutral_planet
-DEBUG:root:Order:1 11 2.0
-ERROR:root:Error in bot.
-Traceback (most recent call last):
-  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_bot.py", line 94, in <module>
-    do_turn(planet_wars)
-  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_bot.py", line 29, in do_turn
-    behavior_tree.execute(state)
-  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_nodes.py", line 8, in logged_fn
-    result = fn(self, state)
-             ^^^^^^^^^^^^^^^
-  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_nodes.py", line 52, in execute
-    success = child_node.execute(state)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_nodes.py", line 8, in logged_fn
-    result = fn(self, state)
-             ^^^^^^^^^^^^^^^
-  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_nodes.py", line 63, in execute
-    continue_execution = child_node.execute(state)
-                         ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_nodes.py", line 8, in logged_fn
-    result = fn(self, state)
-             ^^^^^^^^^^^^^^^
-  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\bt_nodes.py", line 89, in execute
-    return self.action_function(state)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Jake\Desktop\CE Stuff\CMPM 146\P3\behavior_tree_bot\behaviors.py", line 51, in spread_to_weakest_neutral_planet
-    my_strongest.num_ships -= required_ships
-    ^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: can't set attribute
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:1 18 5.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:1 12 13.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:1 11 13.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:1 17 5.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:1 0 38.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:1 6 23.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Order:1 9 26.0
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Success
+DEBUG:root:Result: Sequence: Offensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 18 5.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 18 3.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: aggressive_spread
+DEBUG:root:Result: Action: aggressive_spread -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: aggressive_spread
+DEBUG:root:Result: Action: aggressive_spread -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 12 13.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 12 8.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 12 3.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: aggressive_spread
+DEBUG:root:Result: Action: aggressive_spread -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 6 23.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:0 6 6.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 6 17.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 6 16.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:18 6 19.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 6 15.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:0 6 15.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 6 16.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 0 25.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 0 28.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 0 10.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 0 10.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 0 10.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 18 6.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 18 4.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 9 7.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 9 6.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 12 15.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:0 12 27.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:0 12 22.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:0 12 17.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:6 0 27.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:6 0 24.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:6 0 11.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 0 8.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:6 0 5.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 0 2.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Order:12 18 34.0
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Success
+DEBUG:root:Result: Sequence: Offensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:6 0 24.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 0 21.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 0 16.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 0 13.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 0 10.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: aggressive_spread
+DEBUG:root:Order:12 5 48.0
+DEBUG:root:Result: Action: aggressive_spread -> Success
+DEBUG:root:Result: Sequence: Fallback Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:1 19 56.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: aggressive_spread
+DEBUG:root:Order:0 21 32.0
+DEBUG:root:Result: Action: aggressive_spread -> Success
+DEBUG:root:Result: Sequence: Fallback Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: aggressive_spread
+DEBUG:root:Order:0 17 56.0
+DEBUG:root:Result: Action: aggressive_spread -> Success
+DEBUG:root:Result: Sequence: Fallback Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:6 18 34.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 18 31.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 18 25.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 18 10.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 18 10.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 18 10.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:19 18 22.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:19 12 32.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:0 12 27.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:0 12 22.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 19 20.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:0 19 16.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 19 18.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 19 17.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 19 16.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 19 15.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:18 19 14.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:18 19 13.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:18 19 12.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:18 5 7.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:18 5 6.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:18 5 5.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:18 5 4.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:18 5 3.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Order:18 11 52.0
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Success
+DEBUG:root:Result: Sequence: Offensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Order:12 6 20.0
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Success
+DEBUG:root:Result: Sequence: Offensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Order:12 0 44.0
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Success
+DEBUG:root:Result: Sequence: Offensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:1 15 60.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:21 13 60.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:19 16 60.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:19 21 23.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:19 21 20.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 0 20.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:18 0 17.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:13 0 14.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 0 11.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 21 5.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 6 24.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:11 6 23.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 6 22.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:13 6 21.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 6 20.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:11 6 19.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 6 18.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:18 6 17.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:21 6 16.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:0 6 15.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:0 6 14.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Order:12 14 36.0
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Success
+DEBUG:root:Result: Sequence: Offensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:0 22 59.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:11 3 82.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 0 20.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:21 0 17.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 0 14.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 5 17.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 5 16.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:18 5 15.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:21 5 14.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 3 17.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:6 3 14.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:6 3 11.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:6 5 10.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:6 14 30.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:6 14 28.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:6 14 26.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 14 24.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:6 14 22.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 14 20.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 14 18.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:11 14 16.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:21 14 14.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 14 12.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:13 14 10.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 14 8.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Order:11 17 35.0
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Success
+DEBUG:root:Result: Sequence: Offensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Order:12 20 28.0
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Success
+DEBUG:root:Result: Sequence: Offensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:1 4 82.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:6 7 84.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:16 8 84.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:14 6 24.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:14 3 29.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:15 3 26.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:21 3 23.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:14 3 20.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 6 19.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:11 6 18.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:14 6 17.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:14 6 16.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:22 8 17.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 6 14.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:11 6 13.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:13 8 8.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:14 20 7.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:14 20 6.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 20 5.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:11 20 4.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:14 20 3.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Order:12 17 30.0
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Success
+DEBUG:root:Result: Sequence: Offensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Order:11 2 108.0
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Success
+DEBUG:root:Result: Sequence: Offensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Order:15 9 39.0
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Success
+DEBUG:root:Result: Sequence: Offensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Success
+DEBUG:root:Executing:Action: spread_to_best_neutral_planet
+DEBUG:root:Order:19 10 85.0
+DEBUG:root:Result: Action: spread_to_best_neutral_planet -> Success
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 19 25.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:21 19 24.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:0 19 23.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:14 19 22.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 19 21.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:22 19 20.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 19 19.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:18 10 25.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:12 10 24.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:21 10 23.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:1 10 22.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:0 10 21.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:22 10 20.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Order:13 10 19.0
+DEBUG:root:Result: Action: defend_weakest_planet -> Success
+DEBUG:root:Result: Sequence: Defensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Order:12 17 26.0
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Success
+DEBUG:root:Result: Sequence: Offensive Strategy -> Success
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Success
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+
+DEBUG:root:Executing:Selector: High Level Ordering of Strategies
+DEBUG:root:Executing:Sequence: Defensive Strategy
+DEBUG:root:Executing:Check: is_under_attack
+DEBUG:root:Result: Check: is_under_attack -> Success
+DEBUG:root:Executing:Action: defend_weakest_planet
+DEBUG:root:Result: Action: defend_weakest_planet -> Failure
+DEBUG:root:Result: Sequence: Defensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Offensive Strategy
+DEBUG:root:Executing:Check: have_largest_fleet
+DEBUG:root:Result: Check: have_largest_fleet -> Success
+DEBUG:root:Executing:Check: have_growth_advantage
+DEBUG:root:Result: Check: have_growth_advantage -> Success
+DEBUG:root:Executing:Action: attack_weakest_enemy_planet_smart
+DEBUG:root:Result: Action: attack_weakest_enemy_planet_smart -> Failure
+DEBUG:root:Result: Sequence: Offensive Strategy -> Failure
+DEBUG:root:Executing:Sequence: Aggressive Spread Strategy
+DEBUG:root:Executing:Check: neutral_planet_available_with_ships
+DEBUG:root:Result: Check: neutral_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Aggressive Spread Strategy -> Failure
+DEBUG:root:Executing:Sequence: Fallback Strategy
+DEBUG:root:Executing:Check: enemy_planet_available_with_ships
+DEBUG:root:Result: Check: enemy_planet_available_with_ships -> Failure
+DEBUG:root:Result: Sequence: Fallback Strategy -> Failure
+DEBUG:root:Result: Selector: High Level Ordering of Strategies -> Failure
+DEBUG:root:Finish turn
+

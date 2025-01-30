@@ -8,65 +8,66 @@ sys.path.append(parentdir)
 from behavior_tree_bot.behaviors import *
 from behavior_tree_bot.checks import *
 from behavior_tree_bot.bt_nodes import Selector, Sequence, Action, Check
+
 from planet_wars import PlanetWars, finish_turn
 
-def do_turn(state):
-   behavior_tree.execute(state)
-
 def setup_behavior_tree():
-   root = Selector(name='High Level Strategy')
+    # Top-down construction of behavior tree
+    root = Selector(name='High Level Ordering of Strategies')
 
-   defensive_plan = Sequence(name='Defensive Strategy')
-   under_attack_check = Check(under_attack)
-   defend = Action(defend_against_threats)
-   defensive_plan.child_nodes = [under_attack_check, defend]
+    # Defensive strategy: Protect our planets when under attack
+    defensive_plan = Sequence(name='Defensive Strategy')
+    under_attack = Check(is_under_attack)
+    defend = Action(defend_weakest_planet)
+    defensive_plan.child_nodes = [under_attack, defend]
 
-   stealing_plan = Sequence(name='Neutral Stealing Strategy')
-   can_steal_check = Check(can_steal_neutral)
-   steal = Action(steal_neutral_after_enemy)
-   stealing_plan.child_nodes = [can_steal_check, steal]
+    # Offensive strategy: Attack when we have advantage
+    offensive_plan = Sequence(name='Offensive Strategy')
+    largest_fleet_check = Check(have_largest_fleet)
+    growth_advantage_check = Check(have_growth_advantage)
+    attack = Action(attack_weakest_enemy_planet_smart)
+    offensive_plan.child_nodes = [largest_fleet_check, growth_advantage_check, attack]
 
-   growth_plan = Sequence(name='High Growth Strategy')
-   high_growth_check = Check(have_high_growth_targets)
-   attack_growth = Action(attack_high_growth_planet)
-   growth_plan.child_nodes = [high_growth_check, attack_growth]
+    # Spread strategy: Expand to neutral planets
+    aggressive_spread_plan = Sequence(name='Aggressive Spread Strategy')
+    neutral_planet_check = Check(neutral_planet_available_with_ships)
+    spread_action = Action(spread_to_best_neutral_planet)
+    aggressive_spread_plan.child_nodes = [neutral_planet_check, spread_action]
 
-   offensive_plan = Sequence(name='Offensive Strategy')
-   largest_fleet_check = Check(have_largest_fleet)
-   attack = Action(attack_weakest_enemy_planet)
-   offensive_plan.child_nodes = [largest_fleet_check, attack]
+    # Fallback aggressive strategy: Attack anyway if other strategies fail
+    fallback_plan = Sequence(name='Fallback Strategy')
+    enemy_planet_check = Check(enemy_planet_available_with_ships)
+    aggressive_action = Action(aggressive_spread)
+    fallback_plan.child_nodes = [enemy_planet_check, aggressive_action]
 
-   spread_sequence = Sequence(name='Spread Strategy')
-   neutral_planet_check = Check(if_neutral_planet_available)
-   spread_action = Action(spread_to_weakest_neutral_planet)
-   spread_sequence.child_nodes = [neutral_planet_check, spread_action]
+    # Add all strategies to the root selector
+    # They will be tried in order until one succeeds
+    root.child_nodes = [defensive_plan, offensive_plan, aggressive_spread_plan, fallback_plan]
 
-   root.child_nodes = [defensive_plan, stealing_plan, growth_plan, 
-                      offensive_plan, spread_sequence, attack.copy()]
+    logging.info('\n' + root.tree_to_string())
+    return root
 
-   logging.info('\n' + root.tree_to_string())
-   return root
-
-# Global reference to the behavior tree
-behavior_tree = setup_behavior_tree()
+def do_turn(state):
+    behavior_tree.execute(planet_wars)
 
 if __name__ == '__main__':
-   logging.basicConfig(filename=__file__[:-3] + '.log', filemode='w', level=logging.DEBUG)
+    logging.basicConfig(filename=__file__[:-3] + '.log', filemode='w', level=logging.DEBUG)
 
-   try:
-       map_data = ''
-       while True:
-           current_line = input()
-           if len(current_line) >= 2 and current_line.startswith("go"):
-               planet_wars = PlanetWars(map_data)
-               do_turn(planet_wars)
-               finish_turn()
-               map_data = ''
-           else:
-               map_data += current_line + '\n'
+    behavior_tree = setup_behavior_tree()
+    try:
+        map_data = ''
+        while True:
+            current_line = input()
+            if len(current_line) >= 2 and current_line.startswith("go"):
+                planet_wars = PlanetWars(map_data)
+                do_turn(planet_wars)
+                finish_turn()
+                map_data = ''
+            else:
+                map_data += current_line + '\n'
 
-   except KeyboardInterrupt:
-       print('ctrl-c, leaving ...')
-   except Exception:
-       traceback.print_exc(file=sys.stdout)
-       logging.exception("Error in bot.")
+    except KeyboardInterrupt:
+        print('ctrl-c, leaving ...')
+    except Exception:
+        traceback.print_exc(file=sys.stdout)
+        logging.exception("Error in bot.")
